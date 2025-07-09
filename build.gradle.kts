@@ -7,19 +7,26 @@ plugins {
 group = "com.github.qczone"
 version = "1.0.3"
 
-
 repositories {
+    // 添加多个镜像源作为备选
+    maven { url = uri("https://maven.aliyun.com/repository/public/") }
+    maven { url = uri("https://repo.huaweicloud.com/repository/maven/") }
+    maven { url = uri("https://mirrors.cloud.tencent.com/nexus/repository/maven-public/") }
     mavenCentral()
+    gradlePluginPortal()
 }
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.3")
+    version.set("2023.1.4")  // 使用更稳定的版本
     type.set("IC") // Target IDE Platform
     pluginName.set("Switch2Cursor")
     updateSinceUntilBuild.set(true)
     sameSinceUntilBuild.set(false)
+
+    // 尝试禁用代码检测来避免 instrumentCode 问题
+    instrumentCode.set(false)
 
     plugins.set(listOf(/* Plugin Dependencies */))
 }
@@ -47,5 +54,10 @@ tasks {
 
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
+    }
+
+    // 尝试修复 instrumentCode 任务
+    named("instrumentCode") {
+        enabled = false
     }
 }

@@ -2,12 +2,13 @@ package com.github.qczone.switch2cursor.actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 
-class OpenProjectInCursorAction : BaseOpenAction("cursor") {
+class DynamicOpenFileAction(appName: String) : BaseOpenAction(appName) {
+    
     override fun actionPerformed(e: AnActionEvent) {
-        openProject(e)
+        openFile(e)
     }
-
+    
     override fun update(e: AnActionEvent) {
-        updateProjectAction(e)
+        updateFileAction(e)
     }
 } 

@@ -2,7 +2,7 @@ package com.github.qczone.switch2cursor.actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 
-class OpenProjectInCursorAction : BaseOpenAction("cursor") {
+class OpenProjectInTraeCNAction : BaseOpenAction("trae_cn") {
     override fun actionPerformed(e: AnActionEvent) {
         openProject(e)
     }
